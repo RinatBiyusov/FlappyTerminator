@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Utils;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(ScoreCounter))]
 public class Bird : Hitable

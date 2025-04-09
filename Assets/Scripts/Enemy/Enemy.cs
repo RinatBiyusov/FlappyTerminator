@@ -1,7 +1,5 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using Utils;
 
 public class Enemy : Hitable, IPoolableObject, ITouchable
 {

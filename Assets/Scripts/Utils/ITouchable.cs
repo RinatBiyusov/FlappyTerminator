@@ -1,7 +1,3 @@
-namespace Utils
+public interface ITouchable
 {
-    public interface ITouchable
-    {
-        
-    }
 }
