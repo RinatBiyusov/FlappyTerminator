@@ -44,11 +44,11 @@ public class BulletSpawner : GenericSpawner<Bullet>
 
     private void CreateBullet(Transform transformGun, GroupTeam team, Vector3 position)
     {
-        Bullet bullet = TakeObject();
-        bullet.Hited += Release;
-        bullet.transform.position = position;
-        bullet.SetDirection(CalculateDirection(transformGun));
-        bullet.SetTeam(team);
+            Bullet bullet = TakeObject();
+            bullet.Hited += Release;
+            bullet.transform.position = position;
+            bullet.SetDirection(CalculateDirection(transformGun));
+            bullet.SetTeam(team);
     }
 
     private Vector2 CalculateDirection(Transform transformGun)

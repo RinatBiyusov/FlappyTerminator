@@ -1,8 +1,9 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using Utils;
 
-public class Enemy : Hitable, IPoolableObject
+public class Enemy : Hitable, IPoolableObject, ITouchable
 {
     [SerializeField] private EnemyShooter _shooter;
 
@@ -16,13 +17,12 @@ public class Enemy : Hitable, IPoolableObject
         Disabled?.Invoke(this);
     }
 
-    private void Start()
-    {
+    private void Start() =>
         _shooter.Init(Team);
-    }
 
     protected override void Die()
     {
+        GameEvents.OnEnemyDied();
         Disabled?.Invoke(this);
     }
 }

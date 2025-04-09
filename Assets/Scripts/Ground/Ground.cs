@@ -1,9 +1,10 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using Utils;
 
 [RequireComponent(typeof(Collider2D), typeof(GroundMover), typeof(Rigidbody2D))]
-public class Ground : MonoBehaviour, IPoolableObject
+public class Ground : MonoBehaviour, IPoolableObject, ITouchable
 {
     private Collider2D _collider;
 

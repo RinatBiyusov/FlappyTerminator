@@ -1,25 +1,25 @@
-using UnityEngine;
+    using UnityEngine;
 
-public class Hitable : MonoBehaviour
-{
-    [SerializeField] private Health _health;
-    [SerializeField] private GroupTeam _team;
-
-    public GroupTeam Team => _team;
-    public Health Health => _health;
-
-    private void OnEnable()
+    public class Hitable : MonoBehaviour
     {
-        _health.Died += Die;
-    }
+        [SerializeField] private Health _health;
+        [SerializeField] private GroupTeam _team;
 
-    protected virtual void OnDisable()
-    {
-        _health.Died -= Die;
-    }
+        public GroupTeam Team => _team;
+        public Health Health => _health;
 
-    protected virtual void Die()
-    {
-        _health.TakeDamage();
+        private void OnEnable()
+        {
+            _health.Died += Die;
+        }
+
+        protected virtual void OnDisable()
+        {
+            _health.Died -= Die;
+        }
+
+        protected virtual void Die()
+        {
+            _health.TakeDamage();
+        }
     }
-}

@@ -4,7 +4,7 @@ using System;
 public class BirdShooter : Shooter
 {
     [SerializeField] private BirdInput _input;
-    
+
     public event Action<Transform, GroupTeam, Vector3> Shooted;
 
     private void OnEnable()
@@ -19,6 +19,7 @@ public class BirdShooter : Shooter
 
     protected override void Shoot()
     {
-        Shooted?.Invoke(transform, Team, ShootPosition.position);
+        if (Time.timeScale > 0)
+            Shooted?.Invoke(transform, Team, ShootPosition.position);
     }
 }

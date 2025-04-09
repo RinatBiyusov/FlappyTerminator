@@ -13,12 +13,15 @@ public class BirdInput : MonoBehaviour
         CheckPressLeftClick();
     }
 
-    private void CheckPressSpace() =>
-        WasPressedSpace = Input.GetKeyDown(KeyCode.Space);
+    private void CheckPressSpace()
+    {
+        if (Time.timeScale > 0)
+            WasPressedSpace = Input.GetKeyDown(KeyCode.Space);
+    }
 
     private void CheckPressLeftClick()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Time.timeScale > 0)
             ButtonClicked?.Invoke();
     }
 }

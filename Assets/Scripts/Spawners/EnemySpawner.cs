@@ -14,7 +14,6 @@ public class EnemySpawner : GenericSpawner<Enemy>
     private WaitForSeconds _wait;
 
     public event Action<Enemy> Spawned;
-    public event Action<Enemy> Despawned;
 
     private void OnEnable()
     {
@@ -39,11 +38,10 @@ public class EnemySpawner : GenericSpawner<Enemy>
 
     protected override void Release(Enemy enemy)
     {
-        Despawned?.Invoke(enemy);
         enemy.Disabled -= Release;
         base.Release(enemy);
     }
-    
+
     private Vector3 SetRandomSpawnPoint()
     {
         float randomPositionY = Random.Range(_minPositionSpawnY, _maxPositionSpawnY);
@@ -55,11 +53,16 @@ public class EnemySpawner : GenericSpawner<Enemy>
     {
         while (enabled)
         {
-            Enemy enemy = TakeObject();
-            enemy.Disabled += Release;
-            Spawned?.Invoke(enemy);
+            if (Time.timeScale > 0)
+            {
+                Enemy enemy = TakeObject();
+                enemy.Disabled += Release;
+                Spawned?.Invoke(enemy);
+                
+                yield return _wait;
+            }
             
-            yield return _wait;
+            yield return null;
         }
     }
 }
